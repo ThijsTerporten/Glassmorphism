@@ -1,0 +1,165 @@
+/* Resetting margin and padding for all edges */
+*,
+*::before, 
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* specifies behavior of width and height properties */
+}
+
+html{
+    font-size: 62.5%;  /* 1rem=10px */ 
+}
+
+body {
+    background-color: #02AAB0;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Page 2 */
+
+.aurora {
+    background: #440a67; /* fallback for older browsers */
+    background: radial-gradient(circle farthest-corner at top left, #440A67 10%, transparent),
+                radial-gradient(ellipse farthest-corner at top right, #93329e 20%, transparent),
+                radial-gradient(ellipse at bottom left, #b4aee8 80%, transparent);
+}
+
+.glass {
+    width: min(90%, 40rem);
+    height: min(75vh, 40rem);
+    background-color: rgba(255,255,255,1);
+    border: 0.1rem solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(2rem);
+    border-radius: 2rem;
+    box-shadow: 0 1rem 10rem rgba(0,0,0,0.2);  /* x y blur color */
+}
+
+.glass-header {
+    width: 100%;
+    height: 10%;
+    background: rgba(255,255,255,0.8);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.glass-heading {
+    color: black;
+}
+
+.glass-body {
+    width: 100%;
+    height: 90%;
+}
+
+.glass-figure {
+    width: 20rem;
+    height: 20rem;
+}
+
+.glass-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 0.5rem solid rgba(255,255,255,0.25);
+}
+
+.in-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.a-aurora--glass {
+    animation-name: aurora-glass;
+    animation-duration: 0.8s;
+}
+
+/* Close css for page2 */
+
+header {
+    animation-name: header-popup;
+    animation-duration: 0.4s;
+    animation-fill-mode: backwards;
+}
+/* h1 that are children of header */
+header > h1 {
+    font-size: 500%;
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+    color: #fafafa;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+article {
+    width: 40rem;
+    height: 40rem;
+    background-color: rgba(255,255,255,0.25);
+    position: absolute; /* makes sure glass stays in place */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(0.4rem); /* value between 0 and 20px */
+    border: 0.1rem solid rgba(255,255,255,0.3);
+    border-radius: 2rem;
+    animation-name: popup;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-delay: 0.4s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes popup {
+    from {
+        backdrop-filter: blur(2rem);
+        top: 55%;
+        opacity: 0;
+    }
+    to {
+        backdrop-filter: blur(0.4rem);
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes header-popup {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aurora-glass {
+    from {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Support Queries */
+/* Does the browser understand this? */
+@supports(backdrop-filter: blur(2rem)){
+    .glass {
+    background-color: rgba(255,255,255,0.25);
+    border: 0.1rem solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(2rem);
+}
+}
